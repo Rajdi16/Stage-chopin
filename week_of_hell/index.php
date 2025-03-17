@@ -7,10 +7,14 @@
 </head>
 
 <body>
-    
+    <div class="barre">
+        <a href="index.php">Acceuil</a>
+        <a href="status.php">Conecter vous</a>    
+         
+    </div>
 </body>
 <footer>
-
+    
 </footer>
 
 </html>
