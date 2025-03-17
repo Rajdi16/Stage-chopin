@@ -1,6 +1,6 @@
 <?php
 include('./config.php');
-if (isset($_POST['crée'])) {
+if (isset($_POST['cree'])) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['motDePasse'])) {
         $stmt = $conn->prepare("INSERT INTO compteprofesseur (nom, prenom, email, motDePasse) VALUES (:nom,  :prenom, :email, :motDePasse)");
         $stmt->bindParam(':nom', $_POST['nom']);
@@ -43,7 +43,7 @@ if (isset($_POST['crée'])) {
             <label for="motDePasse2">Confirmer mot de passe</label>
             <input type="password" name="motDePasse2" id="motDePasse2" required>
 
-            <input type="submit" value="Crée compte">
+            <input type="submit" name="cree">
         </form>
     </div>
 </body>
