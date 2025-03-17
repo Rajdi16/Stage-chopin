@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="connection">
+<body class="container">
     <div>
         <h1>Connection</h1>
         <form method="post">

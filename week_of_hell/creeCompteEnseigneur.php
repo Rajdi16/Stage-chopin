@@ -1,3 +1,20 @@
+<?php
+include('./config.php');
+if (isset($_POST['crée'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['motDePasse'])) {
+        $stmt = $conn->prepare("INSERT INTO compteEnseigneur (nom,prenom, email, motDePasse) VALUES (:nom, :email, :prenom, :motDePasse)");
+        $stmt->bindParam(':nom', $_POST['nom']);
+        $stmt->bindParam(':prenom', $_POST['prenom']);
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
+        $stmt->execute();
+        echo "element ajouter";
+        header("Location: index.php");
+    } else {
+        echo "remplissez tout les champs";
+    }
+}
+?>
 <html lang="en">
 
 <head>
@@ -7,8 +24,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="connection">
+<body class="container">
+    <div>
         <h1>Crée compte</h1>
         <form action="creeCompteEnseigneur.php" method="post">
             <label for="nom">Nom</label>
@@ -20,11 +37,11 @@
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
 
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" required>
+            <label for="motDePasse">Mot de passe</label>
+            <input type="password" name="motDePasse" id="motDePasse" required>
 
-            <label for="password2">Confirmer mot de passe</label>
-            <input type="password" name="password2" id="password2" required>
+            <label for="motDePasse2">Confirmer mot de passe</label>
+            <input type="password" name="motDePasse2" id="motDePasse2" required>
 
             <input type="submit" value="Crée compte">
         </form>
