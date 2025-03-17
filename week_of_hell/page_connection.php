@@ -9,38 +9,38 @@ if (isset($_POST['Connexion'])) {
                 $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($etudiants as $etudiant) {
                     if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
-                        header("location: page.php");
+                        header("location: index.php");
                     }
                 }
                 break;
 
-            case "entreprise":
-                $stmt = $conn->query("SELECT * FROM compteentreprise");
-                $stmt->execute();
-                $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($entreprises as $entreprise) {
-                    if ($entreprise['email'] === $_POST['email'] && $entreprise['motDePasse'] === $_POST['motdepasse']) {
-                        header("location: page.php");
+                case "entreprise":
+                    $stmt = $conn->query("SELECT * FROM compteentreprise");
+                    $stmt->execute();
+                    $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($entreprises as $entreprise){
+                        if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
+                            header("location: index.php");
 
                     }
                 }
                 break;
 
-            case "professeur":
-                $stmt = $conn->query("SELECT * FROM compteprofesseur");
-                $stmt->execute();
-                $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($professeurs as $professeur) {
-                    if ($professeur['email'] === $_POST['email'] && $professeurs['motDePasse'] === $_POST['motdepasse']) {
-                        header("location: page.php");
+                case "professeur":
+                    $stmt = $conn->query("SELECT * FROM compteprofesseur");
+                    $stmt->execute();
+                    $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($professeurs as $professeur){
+                        if($professeur['email']===$_POST['email'] && $professeurs['motDePasse']===$_POST['motdepasse']){
+                            header("location: index.php");
+                        }
                     }
-                }
-                break;
+                    break;
+            }
+        }else{
+            echo "veulliez remplir tout les champs";
         }
-    } else {
-        echo "veulliez remplir tout les champs";
     }
-}
 ?>
 
 <html lang="en">
