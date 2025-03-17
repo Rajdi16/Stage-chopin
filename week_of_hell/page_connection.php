@@ -65,7 +65,7 @@
             <input type="radio" name="typeCompte" value="professeur">
             <input type="submit" name="Connexion">
         </form>
-        
+        <a href="status.php">crée un comtpe</a>
     </div>
 </body>
 
