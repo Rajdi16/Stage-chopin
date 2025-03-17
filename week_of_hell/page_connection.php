@@ -31,7 +31,7 @@ if (isset($_POST['Connexion'])) {
                     $stmt->execute();
                     $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($professeurs as $professeur){
-                        if($professeur['email']===$_POST['email'] && $professeurs['motDePasse']===$_POST['motdepasse']){
+                        if($professeur['email']===$_POST['email'] && $professeur['motDePasse']===$_POST['motdepasse']){
                             header("location: index.php?status=professeur");
                         }
                     }
