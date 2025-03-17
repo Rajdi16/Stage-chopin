@@ -2,7 +2,7 @@
 include('./config.php');
 if (isset($_POST['crée'])) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['motDePasse'])) {
-        $stmt = $conn->prepare("INSERT INTO compteEnseigneur (nom,prenom, email, motDePasse) VALUES (:nom, :email, :prenom, :motDePasse)");
+        $stmt = $conn->prepare("INSERT INTO compteprofesseur (nom,prenom, email, motDePasse) VALUES (:nom, :email, :prenom, :motDePasse)");
         $stmt->bindParam(':nom', $_POST['nom']);
         $stmt->bindParam(':prenom', $_POST['prenom']);
         $stmt->bindParam(':email', $_POST['email']);
@@ -27,7 +27,7 @@ if (isset($_POST['crée'])) {
 <body class="container">
     <div>
         <h1>Crée compte</h1>
-        <form action="creeCompteEnseigneur.php" method="post">
+        <form action="creeCompteProfesseur.php" method="post">
             <label for="nom">Nom</label>
             <input type="text" name="nom" id="nom" required>
 
