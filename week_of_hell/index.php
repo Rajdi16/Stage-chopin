@@ -9,7 +9,7 @@
 <body>
     <div class="barre">
         <a href="index.php">Acceuil</a>
-        <a href="status.php">Conecter vous</a>    
+        <a href="page_connection.php">Conecter vous</a>    
          
     </div>
 </body>
