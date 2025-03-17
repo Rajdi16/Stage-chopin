@@ -29,7 +29,7 @@ if (isset($_POST['crée'])) {
     <title>crée un compte entreprise</title>
 </head>
 
-<body>
+<body class="container">
     <form method="post">
         <div>
             <label for="nom">nom de l'entreprise</label>

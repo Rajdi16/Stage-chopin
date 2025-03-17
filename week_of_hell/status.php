@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="connection">
-        <h1>Votre status</h1>
-        <div>
-            <form method="post">
-                <input type="submit" value="Entreprise">
-                <input type="submit" value="Profeseur">
-                <input type="submit" value="Etudiant">
-            </form>
-        </div>
+<body class="container">
+    <div>
+        <h1>Connection</h1>
+        <form method="post">
+            <input type="submit" value="Entreprise" formaction="creeCompteEntreprise.php">
+            <input type="submit" value="Profeseur" formaction="creeCompteProfesseur.php">
+            <input type="submit" value="Etudiant" formaction="creeCompteEtudiant.php">
+        </form>
     </div>
 </body>
+
+
 
 </html>
