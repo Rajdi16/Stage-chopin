@@ -32,22 +32,22 @@ if (isset($_POST['crée'])) {
 <body class="container">
     <form method="post">
         <div>
-            <label for="nom">nom de l'entreprise</label>
+            <label for="nom">Nom de l'entreprise</label>
             <input type="text" name="nom"><br>
 
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email" name="email"><br>
 
-            <label for="adresse">adresse</label>
+            <label for="adresse">Adresse</label>
             <input type="email" name="adresse"><br>
 
-            <label for="ville">ville</label>
+            <label for="ville">Ville</label>
             <input type="text" name="ville"><br>
 
-            <label for="codePostal">code Postal</label>
+            <label for="codePostal">Code Postal</label>
             <input type="number" name="codePostal"><br>
 
-            <label for="motDePasse">mot de passe</label>
+            <label for="motDePasse">Mot de passe</label>
             <input type="text" name="motDePasse"><br>
 
         </div>

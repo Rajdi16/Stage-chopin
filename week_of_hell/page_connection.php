@@ -1,18 +1,18 @@
 <?php
-    include('./config.php');
-    if(isset($_POST['Connexion'])){
-        if(!empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['typeCompte'])){
-            switch($_POST['typeCompte']){
-                case "etudiant":
-                    $stmt = $conn->query("SELECT * FROM compteetudiant");
-                    $stmt->execute();
-                    $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    foreach($etudiants as $etudiant){
-                        if($etudiant['email']===$_POST['email'] && $etudiant['motDePasse']===$_POST['motdepasse']){
-                            header("location: acceuil.php");
-                        }
+include('./config.php');
+if (isset($_POST['Connexion'])) {
+    if (!empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['typeCompte'])) {
+        switch ($_POST['typeCompte']) {
+            case "etudiant":
+                $stmt = $conn->query("SELECT * FROM compteetudiant");
+                $stmt->execute();
+                $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($etudiants as $etudiant) {
+                    if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
+                        header("location: page.php");
                     }
-                    break;
+                }
+                break;
 
                 case "entreprise":
                     $stmt = $conn->query("SELECT * FROM compteentreprise");
@@ -20,19 +20,19 @@
                     $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
-                            header("location: acceuil.php");
+                            header("location: page.php");
 
-                        }
                     }
-                    break;
+                }
+                break;
 
                 case "professeur":
                     $stmt = $conn->query("SELECT * FROM compteprofesseur");
                     $stmt->execute();
                     $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($professeurs as $professeur){
-                        if($professeur['email']===$_POST['email'] && $professeur['motDePasse']===$_POST['motdepasse']){
-                            header("location: acceuil.php");
+                        if($professeur['email']===$_POST['email'] && $professeurs['motDePasse']===$_POST['motdepasse']){
+                            header("location: page.php");
                         }
                     }
                     break;
@@ -58,15 +58,20 @@
         <form method="post">
             <input type="text" name="email" placeholder="Email" required>
             <input type="password" name="motdepasse" placeholder="Mot de passe" required>
+
             <label for="typeCompte">Etudiant</label>
             <input type="radio" name="typeCompte" value="etudiant">
             <label for="typeCompte">Entreprise</label>
             <input type="radio" name="typeCompte" value="entreprise">
             <label for="typeCompte">Professeur</label>
             <input type="radio" name="typeCompte" value="professeur">
+            
             <input type="submit" name="Connexion">
+            
         </form>
-        <a href="status.php">crée un comtpe</a>
+        <div class="creerCompte">
+            <a href="status.php">Crée un comtpe</a>
+        </div>
     </div>
 </body>
 
