@@ -12,15 +12,19 @@
         <a href="index.php">Accueil</a>
         <a href="page_connection.php">Connectez-vous</a>
         <a href="page_compte.php">Compte</a>
-        <a href="page_stages.php">Stages</a>
+        <a href="page_stages.php">Offre Stages</a>
+        <a href="page_stages.php">Demande Stages</a>
         <form action="recherche.php" method="get" class="search-form">
             <input type="text" name="query" placeholder="Rechercher un stage...">
             <button type="submit">Rechercher</button>
         </form>
     </div>
+
+    <div>
+    </div>
 </body>
 <footer>
-    
+
 </footer>
 
 </html>
