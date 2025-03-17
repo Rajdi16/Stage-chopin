@@ -1,3 +1,14 @@
+<?php
+    include('./config.php');
+    if(isset($_POST['Connexion'])){
+        if(!empty($_POST['identifiant']) && !empty($_POST['motdepasse'])){
+            
+        }else{
+            echo "veulliez remplir tout les champs";
+        }
+    }
+?>
+
 <html lang="en">
 
 <head>
@@ -9,11 +20,17 @@
 
 <body class="connection">
     <div>
-        <h1>Conection</h1>
+        <h1>Connection</h1>
         <form method="post">
-            <input type="text" name="indetifiant" placeholder="Email" required>
-            <input type="password" name="motpasse" placeholder="Mot de passe" required>
-            <input type="submit" value="Connexion">
+            <input type="text" name="identifiant" placeholder="Email" required>
+            <input type="password" name="motdepasse" placeholder="Mot de passe" required>
+            <label for="typeCompte">Etudiant</label>
+            <input type="radio" name="typeCompte" value="etudiant">
+            <label for="typeCompte">Entreprise</label>
+            <input type="radio" name="typeCompte" value="entreprise">
+            <label for="typeCompte">Professeur</label>
+            <input type="radio" name="typeCompte" value="professeur">
+            <input type="submit" name="Connexion">
         </form>
         
     </div>
