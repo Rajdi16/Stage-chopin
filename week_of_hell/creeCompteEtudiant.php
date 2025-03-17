@@ -49,7 +49,7 @@ if (isset($_POST['crée'])) {
             <label for="file">Votre CV</label>
             <input type="file" name="file" id="file">
 
-            <input type="submit" value="Crée compte">
+            <input type="submit" value="Crée">
         </form>
     </div>
 
