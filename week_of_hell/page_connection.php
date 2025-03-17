@@ -9,7 +9,7 @@ if (isset($_POST['Connexion'])) {
                 $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($etudiants as $etudiant) {
                     if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
-                        header("location: page.php");
+                        header("location: index.php");
                     }
                 }
                 break;
@@ -20,7 +20,7 @@ if (isset($_POST['Connexion'])) {
                     $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
-                            header("location: page.php");
+                            header("location: index.php");
 
                     }
                 }
@@ -32,7 +32,7 @@ if (isset($_POST['Connexion'])) {
                     $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($professeurs as $professeur){
                         if($professeur['email']===$_POST['email'] && $professeurs['motDePasse']===$_POST['motdepasse']){
-                            header("location: page.php");
+                            header("location: index.php");
                         }
                     }
                     break;
