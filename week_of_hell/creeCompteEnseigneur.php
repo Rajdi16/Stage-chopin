@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="connection">
+<body class="container">
+    <div>
         <h1>Crée compte</h1>
         <form action="creeCompteEnseigneur.php" method="post">
             <label for="nom">Nom</label>
