@@ -39,7 +39,7 @@ if (isset($_POST['crée'])) {
             <input type="email" name="email"><br>
 
             <label for="adresse">Adresse</label>
-            <input type="email" name="adresse"><br>
+            <input type="text" name="adresse"><br>
 
             <label for="ville">Ville</label>
             <input type="text" name="ville"><br>

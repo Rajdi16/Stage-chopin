@@ -1,40 +1,44 @@
 <?php
 include('./config.php');
-if (isset($_POST['crée'])) {
-    if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['codePostal']) && !empty($_POST['motDePasse'])) {
-        $stmt = $conn->prepare("INSERT INTO compteetudiant (nom, prenom, email, classe, cv, lettreMotivation, motDePasse) VALUES (:nom, :email, :classe, :cv, :lettreMotivation, :motDePasse)");
+if (isset($_POST['cree'])) {
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password2']) && $_POST['password'] === $_POST['password2']) {
+        $stmt = $conn->prepare("INSERT INTO `compteetudiant`(`nom`, `prenom`, `email`, `motDePasse`, `cv`) VALUES (:nom, :prenom, :email, :motDePasse, :cv)");
         $stmt->bindParam(':nom', $_POST['nom']);
         $stmt->bindParam(':prenom', $_POST['prenom']);
         $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':classe', $_POST['classe']);
-        $stmt->bindParam(':cv', $_POST['cv']);
-        $stmt->bindParam(':lettreMotivation', $_POST['lettreMotivation']);
-        $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
-        $stmt->execute();
-        echo "element ajouter";
-        header("Location: index.php");
+        $cv = file_get_contents($_FILES['file']['tmp_name']);
+        $stmt->bindParam(':cv', $cv, PDO::PARAM_LOB);
+        $stmt->bindParam(':motDePasse', $_POST['password']);
+
+        if ($stmt->execute()) {
+            echo "Élément ajouté avec succès";
+            header("Location: index.php");
+        } else {
+            echo "Erreur lors de l'ajout de l'élément";
+        }
     } else {
-        echo "remplissez tout les champs";
+        echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
     }
 }
 ?>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Créer un compte étudiant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="container">
     <div>
-        <h1>Crée compte</h1>
-        <form action="creeCompteEtudient.php" method="post">
+        <h1>Créer un compte</h1>
+        <form action="creeCompteEtudiant.php" method="post" enctype="multipart/form-data">
             <label for="nom">Nom</label>
             <input type="text" name="nom" id="nom" required>
 
-            <label for="prenom">Prenom</label>
+            <label for="prenom">Prénom</label>
             <input type="text" name="prenom" id="prenom" required>
 
             <label for="email">Email</label>
@@ -49,15 +53,9 @@ if (isset($_POST['crée'])) {
             <label for="file">Votre CV</label>
             <input type="file" name="file" id="file">
 
-            <input type="submit" value="Crée">
+            <input type="submit" name="cree" value="Créer">
         </form>
     </div>
-
 </body>
-<script>
-    if (document.getElementById('password').value != document.getElementById('password2').value) {
-        alert('les mots de passe ne sont pas identiques');
-    }
-</script>
 
 </html>
