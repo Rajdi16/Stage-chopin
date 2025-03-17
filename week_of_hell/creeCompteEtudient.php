@@ -24,7 +24,8 @@
 
         <label for="password2">Confirmer mot de passe</label>
         <input type="password" name="password2" id="password2" required>
-        <label for="Votre CV"></label>
+
+        <label for="file">Votre CV</label>
         <input type="file" name="file" id="file">
 
         <input type="submit" value="Crée compte">
