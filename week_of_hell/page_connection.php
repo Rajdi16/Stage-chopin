@@ -15,12 +15,12 @@
                     break;
 
                 case "entreprise":
-                    $stmt = $conn->query("SELECT * FROM comptentreprise");
+                    $stmt = $conn->query("SELECT * FROM compteentreprise");
                     $stmt->execute();
                     $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
-                            header("location : page.php");
+                            header("location : creeCompteEntreprise.php");
                         }
                     }
                     break;
