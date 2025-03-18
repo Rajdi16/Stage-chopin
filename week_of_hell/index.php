@@ -14,15 +14,15 @@
     <div class="barre">
         <a href="index.php">Accueil</a>
         <?php if (isset($_SESSION["status"])): ?>
-                    <a href="deconnexion.php">Deconnexion</a>
-                <?php else: ?>
-                    <a href="page_connection.php">Connectez-vous</a>
-                <?php endif ?> 
             <?php if (isset($_SESSION["status"])): ?>
                     <?php if($_SESSION["status"]==="entreprise"||$_SESSION["status"]==="etudiant"|| $_SESSION["status"]==="professeur"):?>
                         <a href="page_compte.php">Compte</a>
                     <?php endif ?>
                 <?php endif ?>
+                    <a href="deconnexion.php">Deconnexion</a>
+                <?php else: ?>
+                    <a href="page_connection.php">Connectez-vous</a>
+                <?php endif ?> 
                 <?php if (isset($_SESSION["status"])): ?>
                     <?php if($_SESSION["status"]==="entreprise"||$_SESSION["status"]==="etudiant"):?>
                         <a href="creeOffreStage.php">Offre Stages</a>
