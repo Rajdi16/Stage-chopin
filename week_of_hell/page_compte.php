@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include('./config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,13 @@
     </div>
     <div>
         <?php if($_SESSION["status"] ==="etudiant"):?>
+            <?php 
+                $stmt = $conn->query("SELECT * FROM compteetudiant");
+                $stmt->execute();
+                $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
             <h2>demande de stage</h2>
-            
+
         <?php endif ?>
         <?php if($_SESSION["status"] ==="entreprise"):?>
             <h2>Offre de stage</h2>
