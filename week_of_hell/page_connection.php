@@ -1,4 +1,7 @@
 <?php
+    session_start();
+?>
+<?php
 include('./config.php');
 if (isset($_POST['Connexion'])) {
     if (!empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['typeCompte'])) {
