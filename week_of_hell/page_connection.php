@@ -24,7 +24,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "entreprise";
-                            $_SESSION["id"] = $etudiant['id'];
+                            $_SESSION["id"] = $entreprise['id'];
                             header("location: index.php");
 
                     }
@@ -38,7 +38,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($professeurs as $professeur){
                         if($professeur['email']===$_POST['email'] && $professeur['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "professeur";
-                            $_SESSION["id"] = $etudiant['id'];
+                            $_SESSION["id"] = $professeur['id'];
                             header("location: index.php");
                         }
                     }

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,18 +17,18 @@
         <a href="page_connection.php">Connectez-vous</a>
         <a href="creeOffreStage.php">Offre Stages</a>
         <a href="page_stages.php">Demande Stages</a>
-        <form action="recherche.php" method="get" class="search-form">
-            <input type="text" name="query" placeholder="Rechercher un stage...">
-            <button type="submit">Rechercher</button>
-        </form>
     </div>
     <div>
         <?php if($_SESSION["status"] ==="etudiant"):?>
-            <p>bienvenue etudiant</p>
+            <h2>demande de stage</h2>
+            
+        <?php endif ?>
         <?php if($_SESSION["status"] ==="entreprise"):?>
-            <p>bienvenue entreprise</p>
+            <h2>Offre de stage</h2>
+        <?php endif ?>
         <?php if($_SESSION["status"] ==="professeur"):?>
             <p>bienvenue professeur</p>
+        <?php endif ?>
     </div>
 </body>
 
