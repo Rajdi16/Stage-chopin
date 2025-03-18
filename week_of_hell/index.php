@@ -33,15 +33,20 @@ session_start();
         <?php endif ?>
     </div>
     <div class="OffredeStage">
-        <?php if ($_SESSION["status"] === "etudiant"): ?>
-            <h2>Offre de stage</h2>
+        <?php if (isset($_SESSION["status"])): ?>
+            <?php if ($_SESSION["status"] === "etudiant"): ?>
+                <h2>Offre de stage</h2>
+            <?php endif ?>
         <?php endif ?>
     </div>
     <div class="DemandedeStage">
-        <?php if ($_SESSION["status"] === "entreprise"): ?>
-            <h2>Demande de stage</h2>
+        <?php if (isset($_SESSION["status"])): ?>
+            <?php if ($_SESSION["status"] === "entreprise"): ?>
+                <h2>Demande de stage</h2>
+            <?php endif ?>
         <?php endif ?>
     </div>
+
 </body>
 <footer>
 
