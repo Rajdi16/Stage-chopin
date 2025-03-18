@@ -10,7 +10,7 @@ if (isset($_POST['cree'])) {
             $stmt->bindParam(':email', $_POST['email']);
             $stmt->bindParam(':motDePasse', $_POST['password']);
             $stmt->execute();
-            header("Location: index.php");
+            header("Location: page_connection.php");
             return;
         } else {
             echo "Les mots de passe ne correspondent pas";

@@ -11,7 +11,7 @@ if (isset($_POST['cree'])) {
         $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
         $stmt->execute();
         echo "element ajouter";
-        header("Location: index.php");
+        header("Location: page_connection.php");
     } else {
         echo "remplissez tout les champs";
     }

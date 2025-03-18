@@ -12,7 +12,7 @@ if (isset($_POST['crée'])) {
             $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
             $stmt->execute();
             echo "Compte créé avec succès";
-            header("Location: index.php");
+            header("Location: page_connection.php");
             return;
         } else {
             echo "Les mots de passe ne correspondent pas";
