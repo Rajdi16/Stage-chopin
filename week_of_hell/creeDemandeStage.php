@@ -11,7 +11,7 @@ if (isset($_POST['cree'])) {
         } else {
             $stmt->bindParam(':description', $_POST['description']);
             $stmt->bindParam(':etat', $_POST['etat']);
-            $stmt->bindParam(':entreprise_Id', $_POST['entreprise_Id']);
+            $stmt->bindParam(':entreprise_Id', $_POST[]);
             $stmt->execute();
         }
         header("Location: index.php");
