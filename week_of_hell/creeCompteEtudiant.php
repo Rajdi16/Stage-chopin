@@ -10,7 +10,6 @@ if (isset($_POST['cree'])) {
             $stmt->bindParam(':email', $_POST['email']);
             $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt->bindParam(':motDePasse', $hashedPassword);
-
             $stmt->execute();
             header("Location: index.php");
             return;
@@ -20,6 +19,7 @@ if (isset($_POST['cree'])) {
     } else {
         echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
     }
+
 }
 ?>
 
@@ -58,3 +58,5 @@ if (isset($_POST['cree'])) {
         </form>
     </div>
 </body>
+
+</html>

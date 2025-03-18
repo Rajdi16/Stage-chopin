@@ -1,25 +1,28 @@
 <?php
-session_start();
-
 include('./config.php');
 if (isset($_POST['crée'])) {
     if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['adresse']) && !empty($_POST['ville']) && !empty($_POST['codePostal']) && !empty($_POST['motDePasse'])) {
-        $stmt = $conn->prepare("INSERT INTO compteEntreprise (nom, email, adresse, ville, codePostal, motDePasse) VALUES (:nom, :email, :adresse, :ville, :codePostal, :motDePasse)");
-        $stmt->bindParam(':nom', $_POST['nom']);
-        $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':adresse', $_POST['adresse']);
-        $stmt->bindParam(':ville', $_POST['ville']);
-        $stmt->bindParam(':codePostal', $_POST['codePostal']);
-        $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
-        $stmt->execute();
-        echo "element ajouter";
-        header("Location: index.php");
+        if ($_POST['motDePasse'] == $_POST['motDePasse2']) {
+            $stmt = $conn->prepare("INSERT INTO `compteEntreprise` (`nom`, `email`, `adresse`, `ville`, `codePostal`, `motDePasse`) VALUES (:nom, :email, :adresse, :ville, :codePostal, :motDePasse)");
+            $stmt->bindParam(':nom', $_POST['nom']);
+            $stmt->bindParam(':email', $_POST['email']);
+            $stmt->bindParam(':adresse', $_POST['adresse']);
+            $stmt->bindParam(':ville', $_POST['ville']);
+            $stmt->bindParam(':codePostal', $_POST['codePostal']);
+            $hashedPassword = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT);
+            $stmt->bindParam(':motDePasse', $hashedPassword);
+            $stmt->execute();
+            echo "Compte créé avec succès";
+            header("Location: index.php");
+            return;
+        } else {
+            echo "Les mots de passe ne correspondent pas";
+        }
     } else {
-        echo "remplissez tout les champs";
+        echo "Veuillez remplir tous les champs";
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +31,7 @@ if (isset($_POST['crée'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>crée un compte entreprise</title>
+    <title>Créer un compte entreprise</title>
 </head>
 
 <body class="container">
@@ -50,7 +53,10 @@ if (isset($_POST['crée'])) {
             <input type="number" name="codePostal"><br>
 
             <label for="motDePasse">Mot de passe</label>
-            <input type="text" name="motDePasse"><br>
+            <input type="password" name="motDePasse"><br>
+
+            <label for="motDePasse2">Confirmer mot de passe</label>
+            <input type="password" name="motDePasse2"><br>
 
         </div>
         <input type="submit" name="crée">
