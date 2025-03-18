@@ -8,17 +8,15 @@ if (isset($_POST['cree'])) {
             $stmt->bindParam(':prenom', $_POST['prenom']);
             $stmt->bindParam(':classe', $_POST['classe']);
             $stmt->bindParam(':email', $_POST['email']);
-            // $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            // $stmt->bindParam(':motDePasse', $hashedPassword);
+            $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $stmt->bindParam(':motDePasse', $hashedPassword);
 
-
+            $stmt->execute();
             header("Location: index.php");
             return;
         } else {
             echo "Les mots de passe ne correspondent pas";
         }
-        $stmt->execute();
-
     } else {
         echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
     }
@@ -44,7 +42,7 @@ if (isset($_POST['cree'])) {
             <label for="prenom">Prénom</label>
             <input type="text" name="prenom" id="prenom" required>
 
-            <label for="classe">Voter classe</label>
+            <label for="classe">Votre classe</label>
             <input type="text" name="classe" id="classe" required>
 
             <label for="email">Email</label>
@@ -56,10 +54,7 @@ if (isset($_POST['cree'])) {
             <label for="password2">Confirmer mot de passe</label>
             <input type="password" name="password2" id="password2" required>
 
-
             <input type="submit" name="cree" value="Créer">
         </form>
     </div>
 </body>
-
-</html>
