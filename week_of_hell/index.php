@@ -47,6 +47,11 @@ session_start();
         <?php endif ?>
     </div>
 
+    <?php if (isset($_SESSION["id"])) {
+        echo $_SESSION["id"];
+    } ?>
+
+
 </body>
 <footer>
 
