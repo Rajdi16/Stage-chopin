@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compte</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="barre">
+    <div class="barre">
         <a href="index.php">Accueil</a>
         <a href="page_connection.php">Connectez-vous</a>
-        <a href="offreStage.php">Offre Stages</a>
+        <a href="creeOffreStage.php">Offre Stages</a>
         <a href="page_stages.php">Demande Stages</a>
         <form action="recherche.php" method="get" class="search-form">
             <input type="text" name="query" placeholder="Rechercher un stage...">
@@ -26,4 +28,5 @@
             <p>bienvenue professeur</p>
     </div>
 </body>
+
 </html>

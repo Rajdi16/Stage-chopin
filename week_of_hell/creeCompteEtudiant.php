@@ -34,6 +34,9 @@ if (isset($_POST['cree'])) {
             <label for="prenom">Prénom</label>
             <input type="text" name="prenom" id="prenom" required>
 
+            <label for="classe">Voter classe</label>
+            <input type="text" name="classe" id="classe" required>
+
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
 
