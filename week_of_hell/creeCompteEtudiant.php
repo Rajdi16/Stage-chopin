@@ -8,8 +8,7 @@ if (isset($_POST['cree'])) {
             $stmt->bindParam(':prenom', $_POST['prenom']);
             $stmt->bindParam(':classe', $_POST['classe']);
             $stmt->bindParam(':email', $_POST['email']);
-            $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt->bindParam(':motDePasse', $hashedPassword);
+            $stmt->bindParam(':motDePasse', $_POST['password']);
             $stmt->execute();
             header("Location: index.php");
             return;

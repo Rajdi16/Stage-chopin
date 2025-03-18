@@ -9,8 +9,7 @@ if (isset($_POST['crée'])) {
             $stmt->bindParam(':adresse', $_POST['adresse']);
             $stmt->bindParam(':ville', $_POST['ville']);
             $stmt->bindParam(':codePostal', $_POST['codePostal']);
-            $hashedPassword = password_hash($_POST['motDePasse'], PASSWORD_DEFAULT);
-            $stmt->bindParam(':motDePasse', $hashedPassword);
+            $stmt->bindParam(':motDePasse', $_POST['motDePasse']);
             $stmt->execute();
             echo "Compte créé avec succès";
             header("Location: index.php");
@@ -38,28 +37,28 @@ if (isset($_POST['crée'])) {
     <form method="post">
         <div>
             <label for="nom">Nom de l'entreprise</label>
-            <input type="text" name="nom"><br>
+            <input type="text" name="nom" required><br>
 
             <label for="email">Email</label>
-            <input type="email" name="email"><br>
+            <input type="email" name="email" required><br>
 
             <label for="adresse">Adresse</label>
-            <input type="text" name="adresse"><br>
+            <input type="text" name="adresse" required><br>
 
             <label for="ville">Ville</label>
-            <input type="text" name="ville"><br>
+            <input type="text" name="ville" required><br>
 
             <label for="codePostal">Code Postal</label>
-            <input type="number" name="codePostal"><br>
+            <input type="number" name="codePostal" required><br>
 
             <label for="motDePasse">Mot de passe</label>
-            <input type="password" name="motDePasse"><br>
+            <input type="password" name="motDePasse" required><br>
 
             <label for="motDePasse2">Confirmer mot de passe</label>
-            <input type="password" name="motDePasse2"><br>
+            <input type="password" name="motDePasse2" required><br>
 
         </div>
-        <input type="submit" name="crée">
+        <input type="submit" name="crée" value="Créer">
     </form>
 </body>
 
