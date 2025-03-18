@@ -26,7 +26,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($entreprises as $entreprise) {
                     if ($entreprise['email'] === $_POST['email'] && $entreprise['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "entreprise";
-                        $_SESSION["id"] = $entreprise['id'];
+                        $_SESSION["id"] = $entreprise['enterprise_id'];
                         header("location: index.php");
 
                     }
@@ -40,7 +40,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($professeurs as $professeur) {
                     if ($professeur['email'] === $_POST['email'] && $professeur['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "professeur";
-                        $_SESSION["id"] = $professeur['id'];
+                        $_SESSION["id"] = $professeur['prof_id'];
                         header("location: index.php");
                     }
                 }
@@ -68,13 +68,12 @@ if (isset($_POST['Connexion'])) {
             <input type="text" name="email" placeholder="Email" required>
             <input type="password" name="motdepasse" placeholder="Mot de passe" required>
 
-            <label for="typeCompte">Etudiant</label>
-            <input type="radio" name="typeCompte" value="etudiant">
-            <label for="typeCompte">Entreprise</label>
-            <input type="radio" name="typeCompte" value="entreprise">
-            <label for="typeCompte">Professeur</label>
-            <input type="radio" name="typeCompte" value="professeur">
-
+            <select name="typeCompte" id="typeCompte">
+                <option value="none">--Choisir un status--</option>
+                <option value="etudiant">Etudiant</option>
+                <option value="entreprise">Entreprise</option>
+                <option value="professeur">Professeur</option>
+            </select>
             <input type="submit" name="Connexion">
 
         </form>
@@ -82,6 +81,11 @@ if (isset($_POST['Connexion'])) {
             <a href="status.php">Crée un comtpe</a>
         </div>
     </div>
+    <?php
+    if (isset($_session['id'])) {
+        echo "veulliez remplir tout les champs";
+    }
+    ?>
 </body>
 
 
