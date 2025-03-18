@@ -1,5 +1,6 @@
 <?php
 include('./config.php');
+session_start();
 if (isset($_POST['Connexion'])) {
     if (!empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['typeCompte'])) {
         switch ($_POST['typeCompte']) {
@@ -10,6 +11,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($etudiants as $etudiant) {
                     if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "etudiant";
+                        $_SESSION["id"] = $etudiant['id'];
                         header("location: index.php");
                     }
                 }
@@ -22,6 +24,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "entreprise";
+                            $_SESSION["id"] = $etudiant['id'];
                             header("location: index.php");
 
                     }
@@ -35,6 +38,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($professeurs as $professeur){
                         if($professeur['email']===$_POST['email'] && $professeur['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "professeur";
+                            $_SESSION["id"] = $etudiant['id'];
                             header("location: index.php");
                         }
                     }
