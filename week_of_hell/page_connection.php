@@ -13,7 +13,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($etudiants as $etudiant) {
                     if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "etudiant";
-                        $_SESSION["id"] = $etudiant['id'];
+                        $_SESSION["id"] = $etudiant['etudiant_Id'];
                         header("location: index.php");
                     }
                 }
@@ -26,7 +26,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($entreprises as $entreprise){
                         if($entreprise['email']===$_POST['email'] && $entreprise['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "entreprise";
-                            $_SESSION["id"] = $entreprise['id'];
+                            $_SESSION["id"] = $entreprise['entreprise_Id'];
                             header("location: index.php");
 
                     }
@@ -40,7 +40,7 @@ if (isset($_POST['Connexion'])) {
                     foreach($professeurs as $professeur){
                         if($professeur['email']===$_POST['email'] && $professeur['motDePasse']===$_POST['motdepasse']){
                             $_SESSION["status"] = "professeur";
-                            $_SESSION["id"] = $professeur['id'];
+                            $_SESSION["id"] = $professeur['prof_Id'];
                             header("location: index.php");
                         }
                     }
