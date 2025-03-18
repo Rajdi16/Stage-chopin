@@ -1,43 +1,49 @@
 <?php
 session_start();
-
 include('./config.php');
+if (!isset($_SESSION['id'])) {
+    echo "Vous devez être connecté pour créer une offre de stage.";
+    exit();
+}
+
 if (isset($_POST['cree'])) {
-    if (!empty($_POST['dateDeb']) && !empty($_POST['dateFin']) && !empty($_POST['detail']) && !empty($_POST['etat']) && !empty($_POST['entreprise_Id'])) {
+    if (!empty($_POST['dateDeb']) && !empty($_POST['dateFin']) && !empty($_POST['detail']) && !empty($_POST['etat'])) {
+        if ($_POST['dateDeb'] > $_POST['dateFin']) {
+            echo "La date de début doit être inférieure à la date de fin";
+            return;
+        }
+
         $stmt = $conn->prepare("INSERT INTO offrestage (`dateDeb`, `dateFin`, `detail`, `etat`, `entreprise_Id`) VALUES (:dateDeb, :dateFin, :detail, :etat, :entreprise_Id)");
         $stmt->bindParam(':dateDeb', $_POST['dateDeb']);
         $stmt->bindParam(':dateFin', $_POST['dateFin']);
-        if ($_POST['dateDeb'] > $_POST['dateFin']) {
-            echo "la date de debut doit etre inferieur a la date de fin";
-            return;
+        $stmt->bindParam(':detail', $_POST['detail']);
+        $stmt->bindParam(':etat', $_POST['etat']);
+        $stmt->bindParam(':entreprise_Id', $_SESSION['id']);
+        if ($stmt->execute()) {
+            header("Location: index.php");
+            exit();
         } else {
-            $stmt->bindParam(':detail', $_POST['detail']);
-            $stmt->bindParam(':etat', $_POST['etat']);
-            $stmt->bindParam(':entreprise_Id', $_POST['entreprise_Id']);
-            $stmt->execute();
+            echo "Erreur lors de la création de l'offre de stage";
         }
-        header("Location: index.php");
     } else {
-        echo "remplissez tout les champs";
+        echo "Veuillez remplir tous les champs";
     }
-
 }
 ?>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Créer une offre de stage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="container">
     <div>
-        <h1>Offere un stage</h1>
+        <h1>Offrir un stage</h1>
         <form action="creeOffreStage.php" method="post">
-
-            <label for="dateDeb">Date de debut</label>
+            <label for="dateDeb">Date de début</label>
             <input type="date" name="dateDeb" id="dateDeb" required>
 
             <label for="dateFin">Date de fin</label>
@@ -46,12 +52,10 @@ if (isset($_POST['cree'])) {
             <label for="detail">Description</label>
             <input type="text" name="detail" id="detail" required>
 
-            <label for="etat">Etat</label>
+            <label for="etat">État</label>
             <input type="text" name="etat" id="etat" required>
 
-
-
-            <input type="submit" name="cree">
+            <input type="submit" name="cree" value="Créer">
         </form>
     </div>
 </body>

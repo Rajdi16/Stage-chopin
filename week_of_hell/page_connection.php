@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <?php
 include('./config.php');
@@ -13,7 +13,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($etudiants as $etudiant) {
                     if ($etudiant['email'] === $_POST['email'] && $etudiant['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "etudiant";
-                        $_SESSION["id"] = $etudiant['id'];
+                        $_SESSION["id"] = $etudiant['etudiant_Id'];
                         header("location: index.php");
                     }
                 }
@@ -74,9 +74,9 @@ if (isset($_POST['Connexion'])) {
             <input type="radio" name="typeCompte" value="entreprise">
             <label for="typeCompte">Professeur</label>
             <input type="radio" name="typeCompte" value="professeur">
-            
+
             <input type="submit" name="Connexion">
-            
+
         </form>
         <div class="creerCompte">
             <a href="status.php">Crée un comtpe</a>
