@@ -1,20 +1,21 @@
 <?php
-session_start();
 include('./config.php');
 if (isset($_POST['cree'])) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['classe']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-        $stmt = $conn->prepare("INSERT INTO `compteetudiant`(`nom`, `prenom`,'classe', `email`, `motDePasse`) VALUES (:nom, :prenom,:classe, :email, :motDePasse)");
-        $stmt->bindParam(':nom', $_POST['nom']);
-        $stmt->bindParam(':prenom', $_POST['prenom']);
-        $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':motDePasse', $_POST['password']);
         if ($_POST['password'] !== $_POST['password2']) {
             echo "Les mots de passe ne correspondent pas";
             return;
-        } else {
-            $stmt->execute();
         }
 
+        $stmt = $conn->prepare("INSERT INTO `compteetudiant`(`nom`, `prenom`, `classe`, `email`, `motDePasse`) VALUES (:nom, :prenom, :classe, :email, :motDePasse)");
+        $stmt->bindParam(':nom', $_POST['nom']);
+        $stmt->bindParam(':prenom', $_POST['prenom']);
+        $stmt->bindParam(':classe', $_POST['classe']);
+        $stmt->bindParam(':email', $_POST['email']);
+        // $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        // $stmt->bindParam(':motDePasse', $hashedPassword);
+
+        $stmt->execute();
         header("Location: index.php");
     } else {
         echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
