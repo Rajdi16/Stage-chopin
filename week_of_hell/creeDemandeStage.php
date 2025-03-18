@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include('./config.php');
 if (isset($_POST['cree'])) {
     if (!empty($_POST['dateDeb']) && !empty($_POST['dateFin']) && !empty($_POST['description']) && !empty($_POST['etat']) && !empty($_POST['entreprise_Id'])) {

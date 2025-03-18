@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include('./config.php');
 if (isset($_POST['cree'])) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['motDePasse'])) {
