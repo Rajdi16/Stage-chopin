@@ -1,5 +1,6 @@
 <?php
 include('./config.php');
+session_start();
 if (isset($_POST['Connexion'])) {
     if (!empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['typeCompte'])) {
         switch ($_POST['typeCompte']) {
