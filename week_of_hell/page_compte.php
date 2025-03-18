@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include('./config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +20,21 @@
         <a href="page_stages.php">Demande Stages</a>
     </div>
     <div>
-        <?php if($_SESSION["status"] ==="etudiant"):?>
+        <?php if($_SESSION["status"] === "etudiant"):?>
+            <?php 
+                $stmt = $conn->query("SELECT * FROM compteetudiant WHERE id = :id");
+                $stmt->bindParam(':id', $_SESSION['id']);
+                $stmt->execute();
+                $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <table>
+                <tr>
+                    <th><?=$etudiants['nom']?></th>
+                </tr>
+            </table>
             <h2>demande de stage</h2>
-            
         <?php endif ?>
+
         <?php if($_SESSION["status"] ==="entreprise"):?>
             <h2>Offre de stage</h2>
         <?php endif ?>
