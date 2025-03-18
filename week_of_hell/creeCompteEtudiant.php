@@ -2,14 +2,12 @@
 include('./config.php');
 if (isset($_POST['cree'])) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password2']) && $_POST['password'] === $_POST['password2']) {
-        $stmt = $conn->prepare("INSERT INTO `compteetudiant`(`nom`, `prenom`, `email`, `motDePasse`, `cv`) VALUES (:nom, :prenom, :email, :motDePasse, :cv)");
+        $stmt = $conn->prepare("INSERT INTO `compteetudiant`(`nom`, `prenom`, `email`, `motDePasse`) VALUES (:nom, :prenom, :email, :motDePasse)");
         $stmt->bindParam(':nom', $_POST['nom']);
         $stmt->bindParam(':prenom', $_POST['prenom']);
         $stmt->bindParam(':email', $_POST['email']);
-        $cv = file_get_contents($_FILES['file']['tmp_name']);
-        $stmt->bindParam(':cv', $cv, PDO::PARAM_LOB);
         $stmt->bindParam(':motDePasse', $_POST['password']);
-        $stmt->execute()
+        $stmt->execute();
         header("Location: index.php");
     } else {
         echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
@@ -44,9 +42,6 @@ if (isset($_POST['cree'])) {
 
             <label for="password2">Confirmer mot de passe</label>
             <input type="password" name="password2" id="password2" required>
-
-            <label for="file">Votre CV</label>
-            <input type="file" name="file" id="file">
 
             <input type="submit" name="cree" value="Créer">
         </form>
