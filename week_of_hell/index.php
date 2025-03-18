@@ -42,9 +42,6 @@ session_start();
             <h2>Demande de stage</h2>
         <?php endif ?>
     </div>
-    <?php if (isset($_SESSION["id"])) {
-        echo $_SESSION["id"];
-    } ?>
 </body>
 <footer>
 

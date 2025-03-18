@@ -19,7 +19,7 @@ if (isset($_POST['cree'])) {
         $stmt->bindParam(':dateFin', $_POST['dateFin']);
         $stmt->bindParam(':description', $_POST['description']);
         $stmt->bindParam(':etat', $_POST['etat']);
-        $stmt->bindParam(':entreprise_Id', $_SESSION['id']);
+        $stmt->bindParam(':etudiant_Id', $_SESSION['id']);
 
         if ($stmt->execute()) {
             header("Location: index.php");
