@@ -9,13 +9,8 @@ if (isset($_POST['cree'])) {
         $cv = file_get_contents($_FILES['file']['tmp_name']);
         $stmt->bindParam(':cv', $cv, PDO::PARAM_LOB);
         $stmt->bindParam(':motDePasse', $_POST['password']);
-
-        if ($stmt->execute()) {
-            echo "Élément ajouté avec succès";
-            header("Location: index.php");
-        } else {
-            echo "Erreur lors de l'ajout de l'élément";
-        }
+        $stmt->execute()
+        header("Location: index.php");
     } else {
         echo "Veuillez remplir tous les champs et vérifier que les mots de passe correspondent";
     }
