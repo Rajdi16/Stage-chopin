@@ -32,26 +32,24 @@ session_start();
             <a href="page_connection.php">Connectez-vous</a>
         <?php endif ?>
     </div>
-    <div class="OffredeStage">
+    <?php if (isset($_SESSION["id"])) {
+        echo $_SESSION["id"];
+    }?>
+    <div class="offreDeStage">
         <?php if (isset($_SESSION["status"])): ?>
-            <?php if ($_SESSION["status"] === "etudiant"): ?>
+            <?php if ($_SESSION["status"] === "etudiant"||$_SESSION["status"] ==="professeur" ): ?>
                 <h2>Offre de stage</h2>
             <?php endif ?>
         <?php endif ?>
+
     </div>
     <div class="DemandedeStage">
         <?php if (isset($_SESSION["status"])): ?>
-            <?php if ($_SESSION["status"] === "entreprise"): ?>
+            <?php if ($_SESSION["status"] === "entreprise"||$_SESSION["status"] ==="professeur" ): ?>
                 <h2>Demande de stage</h2>
             <?php endif ?>
         <?php endif ?>
     </div>
-
-    <?php if (isset($_SESSION["id"])) {
-        echo $_SESSION["id"];
-    } ?>
-
-
 </body>
 <footer>
 
