@@ -21,6 +21,7 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="barre">
         <a href="index.php">Accueil</a>
+        <a href="stage.php">Stage</a>
         <?php if (isset($_SESSION["status"])): ?>
             <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
                 <a href="page_compte.php">Compte</a>
