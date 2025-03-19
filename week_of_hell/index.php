@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+$stmt = $pdo->prepare("SELECT * FROM utilisateurs");
+
+$stmt->execute();
+
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <html lang="en">
 
