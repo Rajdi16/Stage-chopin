@@ -1,11 +1,12 @@
 <?php
+include('./config.php');
 session_start();
 
-$stmt = $pdo->prepare("SELECT * FROM utilisateurs");
+$stmt = $conn->prepare("SELECT * FROM offrestage");
 
 $stmt->execute();
 
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <html lang="en">
@@ -46,9 +47,20 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (isset($_SESSION["status"])): ?>
             <?php if ($_SESSION["status"] === "etudiant"||$_SESSION["status"] ==="professeur" ): ?>
                 <h2>Offre de stage</h2>
+                <div class="grilleOffre">
+                    <?php foreach($offres as $offre): ?>
+                        <div class = "grille"><?= $offre['entreprise_Id']?>
+                        <p>Date de début</p>
+                        <?= $offre['dateDeb']?>
+                        <p>Date de fin</p>
+                        <?= $offre['dateFin']?>
+                        <p>Description</p>
+                        <?= $offre['description']?></div>
+                    <?php endforeach?>
+                </div>
             <?php endif ?>
         <?php endif ?>
-
+        
     </div>
     <div class="DemandedeStage">
         <?php if (isset($_SESSION["status"])): ?>
