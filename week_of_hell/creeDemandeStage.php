@@ -57,7 +57,7 @@ if (isset($_POST['cree'])) {
             <select name="etat" id="etat">
                 <option value="En Cours">En Cours</option>
                 <option value="Terminer">Terminer</option>
-            </select>
+            </select required>
             <input type="submit" name="cree" value="Créer">
         </form>
     </div>
