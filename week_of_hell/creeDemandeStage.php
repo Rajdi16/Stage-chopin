@@ -54,9 +54,10 @@ if (isset($_POST['cree'])) {
             <label for="description">Description</label>
             <input type="text" name="description" id="description" required>
 
-            <label for="etat">État</label>
-            <input type="text" name="etat" id="etat" required>
-
+            <select name="etat" id="etat">
+                <option value="En Cours">En Cours</option>
+                <option value="Terminer">Terminer</option>
+            </select required>
             <input type="submit" name="cree" value="Créer">
         </form>
     </div>
