@@ -44,7 +44,7 @@ if (isset($_POST['cree'])) {
 <body class="container">
     <div>
         <h1>Faire une demande de stage</h1>
-        <form action="creeDemandeStage.php" method="post">
+        <form action="creeOffreStage.php" method="post">
             <label for="dateDeb">Date de début</label>
             <input type="date" name="dateDeb" id="dateDeb" required>
 
