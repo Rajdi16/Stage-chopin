@@ -8,6 +8,12 @@ $stmt->execute();
 
 $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $conn->prepare("SELECT * FROM demandestage");
+
+$stmt->execute();
+
+$demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <html lang="en">
 
@@ -50,13 +56,21 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h2>Offre de stage</h2>
                 <div class="grilleOffre">
                     <?php foreach($offres as $offre): ?>
-                        <div class = "grille"><?= $offre['entreprise_Id']?>
-                        <p>Date de début</p>
-                        <?= $offre['dateDeb']?>
-                        <p>Date de fin</p>
-                        <?= $offre['dateFin']?>
-                        <p>Description</p>
-                        <?= $offre['description']?></div>
+                        <?php
+                            $stmt = $conn->prepare("SELECT * FROM compteentreprise WHERE entreprise_Id = :entreprise_Id");
+                            $stmt->bindParam(':entreprise_Id', $offre['entreprise_Id']);
+                            $stmt->execute();
+                            $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div class = "grille">
+                            <?= $entreprises[0]['nom']?>
+                            <p>Date de début</p>
+                            <?= $offre['dateDeb']?>
+                            <p>Date de fin</p>
+                            <?= $offre['dateFin']?>
+                            <p>Description</p>
+                            <?= $offre['description']?>
+                        </div>
                     <?php endforeach?>
                 </div>
             <?php endif ?>
@@ -67,6 +81,25 @@ $offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (isset($_SESSION["status"])): ?>
             <?php if ($_SESSION["status"] === "entreprise"||$_SESSION["status"] ==="professeur" ): ?>
                 <h2>Demande de stage</h2>
+                <div class="grilleOffre">
+                    <?php foreach($demandes as $demande): ?>
+                        <?php
+                            $stmt = $conn->prepare("SELECT * FROM compteetudiant WHERE etudiant_Id = :etudiant_Id");
+                            $stmt->bindParam(':etudiant_Id', $demande['etudiant_Id']);
+                            $stmt->execute();
+                            $etudiant = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div class = "grille">
+                            <?= $etudiant[0]['nom']?>
+                            <p>Date de début</p>
+                            <?= $demande['dateDeb']?>
+                            <p>Date de fin</p>
+                            <?= $demande['dateFin']?>
+                            <p>Description</p>
+                            <?= $demande['description']?>
+                        </div>
+                    <?php endforeach?>
+                </div>
             <?php endif ?>
         <?php endif ?>
     </div>
