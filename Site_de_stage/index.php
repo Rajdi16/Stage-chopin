@@ -21,87 +21,116 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="barre">
-        <a href="index.php">Accueil</a>
-        <a href="stage.php">Stage</a>
+        <div class="logo">
+            <p>STAGE POUR TOUS</p>
+        </div>
+
+        <a href="index.php">
+            <p>Accueil</p>
+        </a>
         <?php if (isset($_SESSION["status"])): ?>
             <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
-                <a href="page_compte.php">Compte</a>
+                <a href="page_compte.php">
+                    <p>Compte</p>
+                </a>
             <?php endif ?>
         <?php endif ?>
         <?php if (isset($_SESSION["status"])): ?>
             <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "professeur"): ?>
-                <a href="creeOffreStage.php">Offre Stages</a>
+                <a href="creeOffreStage.php">
+                    <p>Offre Stages</p>
+                </a>
             <?php endif ?>
             <?php if ($_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
-                <a href="creeDemandeStage.php">Demande Stages</a>
+                <a href="creeDemandeStage.php">
+                    <p>Demande Stages</p>
+                </a>
             <?php endif ?>
         <?php endif ?>
         <?php if (isset($_SESSION["status"])): ?>
-            <a href="deconnexion.php">Deconnexion</a>
+            <?php if ($_SESSION["status"] === "professeur"): ?>
+                <a href="stage.php">
+                    <p>Stages</p>
+                </a>
+            <?php endif ?>
+
+        <?php endif ?>
+        <?php if (isset($_SESSION["status"])): ?>
+            <a href="deconnexion.php">
+                <p>Deconnexion</p>
+            </a>
         <?php else: ?>
-            <a href="page_connection.php">Connectez-vous</a>
-        <?php endif ?>
-    </div>
-    <?php if (isset($_SESSION["id"])) {
-        echo $_SESSION["id"];
-    } ?>
-    <div class="offreDeStage">
-        <?php if (isset($_SESSION["status"])): ?>
-            <?php if ($_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
-                <h2>Offre de stage</h2>
-                <div class="grilleOffre">
-                    <?php foreach ($offres as $offre): ?>
-                        <?php
-                        $stmt = $conn->prepare("SELECT * FROM compteentreprise WHERE entreprise_Id = :entreprise_Id");
-                        $stmt->bindParam(':entreprise_Id', $offre['entreprise_Id']);
-                        $stmt->execute();
-                        $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                        <div class="grille">
-                            <?= $entreprises[0]['nom'] ?>
-                            <p>Date de début</p>
-                            <?= $offre['dateDeb'] ?>
-                            <p>Date de fin</p>
-                            <?= $offre['dateFin'] ?>
-                            <p>Description</p>
-                            <?= $offre['description'] ?>
-                        </div>
-                    <?php endforeach ?>
-                </div>
-            <?php endif ?>
+            <a href="page_connection.php">
+                <p>Connectez-vous</p>
+            </a>
         <?php endif ?>
 
     </div>
-    <div class="DemandedeStage">
-        <?php if (isset($_SESSION["status"])): ?>
-            <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "professeur"): ?>
-                <h2>Demande de stage</h2>
-                <div class="grilleOffre">
-                    <?php foreach ($demandes as $demande): ?>
-                        <?php
-                        $stmt = $conn->prepare("SELECT * FROM compteetudiant WHERE etudiant_Id = :etudiant_Id");
-                        $stmt->bindParam(':etudiant_Id', $demande['etudiant_Id']);
-                        $stmt->execute();
-                        $etudiant = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                        <div class="grille">
-                            <?= $etudiant[0]['nom'] ?>
-                            <p>Date de début</p>
-                            <?= $demande['dateDeb'] ?>
-                            <p>Date de fin</p>
-                            <?= $demande['dateFin'] ?>
-                            <p>Description</p>
-                            <?= $demande['description'] ?>
-                        </div>
-                    <?php endforeach ?>
-                </div>
+
+    <div class="imageDeDebut">
+        <h1 class=" text_image">STAGE POUR TOUS</h1>
+        <p class="text_image">Le site qui vous permet de trouver un stage ou un stagiaire</p>
+        <p class="text_image">Vous êtes une entreprise ou un/e étudiant/e, vous êtes au bon endroit</p>
+    </div>
+    <div>
+        <div class="offreDeStage">
+            <?php if (isset($_SESSION["status"])): ?>
+                <?php if ($_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
+                    <h2>Offre de stage</h2>
+                    <div class="grilleOffre">
+                        <?php foreach ($offres as $offre): ?>
+                            <?php
+                            $stmt = $conn->prepare("SELECT * FROM compteentreprise WHERE entreprise_Id = :entreprise_Id");
+                            $stmt->bindParam(':entreprise_Id', $offre['entreprise_Id']);
+                            $stmt->execute();
+                            $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            <div class="grille">
+                                <?= $entreprises[0]['nom'] ?>
+                                <p>Date de début</p>
+                                <?= $offre['dateDeb'] ?>
+                                <p>Date de fin</p>
+                                <?= $offre['dateFin'] ?>
+                                <p>Description</p>
+                                <?= $offre['description'] ?>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
             <?php endif ?>
-        <?php endif ?>
+
+        </div>
+        <div class="demandeDeStage">
+            <?php if (isset($_SESSION["status"])): ?>
+                <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "professeur"): ?>
+                    <h2>Demande de stage</h2>
+                    <div class="grilleOffre">
+                        <?php foreach ($demandes as $demande): ?>
+                            <?php
+                            $stmt = $conn->prepare("SELECT * FROM compteetudiant WHERE etudiant_Id = :etudiant_Id");
+                            $stmt->bindParam(':etudiant_Id', $demande['etudiant_Id']);
+                            $stmt->execute();
+                            $etudiant = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            <div class="grille">
+                                <?= $etudiant[0]['nom'] ?>
+                                <p>Date de début</p>
+                                <?= $demande['dateDeb'] ?>
+                                <p>Date de fin</p>
+                                <?= $demande['dateFin'] ?>
+                                <p>Description</p>
+                                <?= $demande['description'] ?>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+            <?php endif ?>
+        </div>
     </div>
 </body>
 <footer>
