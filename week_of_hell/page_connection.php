@@ -62,6 +62,9 @@ if (isset($_POST['Connexion'])) {
 </head>
 
 <body class="container">
+    <div class="barre">
+        <a href="index.php">Accueil</a>
+    </div>
     <div>
         <h1>Connection</h1>
         <form method="post">
