@@ -14,7 +14,7 @@ if (isset($_POST['cree'])) {
             return;
         }
 
-        $stmt = $conn->prepare("INSERT INTO demandestage (`dateDeb`, `dateFin`, `description`, `etat`, `enterpris_Id`) VALUES (:dateDeb, :dateFin, :description, :etat, :enterpris_Id)");
+        $stmt = $conn->prepare("INSERT INTO offrestage (`dateDeb`, `dateFin`, `description`, `etat`, `enterpris_Id`) VALUES (:dateDeb, :dateFin, :description, :etat, :enterpris_Id)");
         $stmt->bindParam(':dateDeb', $_POST['dateDeb']);
         $stmt->bindParam(':dateFin', $_POST['dateFin']);
         $stmt->bindParam(':description', $_POST['description']);

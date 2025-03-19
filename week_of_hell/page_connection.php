@@ -26,7 +26,7 @@ if (isset($_POST['Connexion'])) {
                 foreach ($entreprises as $entreprise) {
                     if ($entreprise['email'] === $_POST['email'] && $entreprise['motDePasse'] === $_POST['motdepasse']) {
                         $_SESSION["status"] = "entreprise";
-                        $_SESSION["id"] = $entreprise['enterprise_Id'];
+                        $_SESSION["id"] = $entreprise['entreprise_Id'];
                         header("location: index.php");
 
                     }
