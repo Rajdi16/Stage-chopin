@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="pagecompte">
 <div class="barre">
         <a href="index.php">Accueil</a>
         <?php if (isset($_SESSION["status"])): ?>
@@ -62,13 +62,15 @@
                 <p><?=$etudiants[0]['classe']?>
 
             <h2>Modifier le compte</h2>
-                <form method="post" action="modifierCompteEtudiant.php">
-                    <label for="classe">Modifier votre classe</label>
-                    <input type="text" name="classe" id="classe" value= '<?=$etudiants[0]['classe']?>' required>
-                    <label for="email">Modifier votre email</label>
-                    <input type="text" name="email" id="email" value= '<?=$etudiants[0]['email']?>' required>
-                    <input type="submit" name="modifier" value="modifier">
-                </form>
+                <div>
+                    <form method="post" action="modifierCompteEtudiant.php">
+                        <label for="classe">Modifier votre classe</label>
+                        <input type="text" name="classe" id="classe" value= '<?=$etudiants[0]['classe']?>' required>
+                        <label for="email">Modifier votre email</label>
+                        <input type="text" name="email" id="email" value= '<?=$etudiants[0]['email']?>' required>
+                        <input type="submit" name="modifier" value="modifier">
+                    </form>
+                </div>
 
             <h2>demande de stage</h2>
         <?php endif ?>
@@ -88,21 +90,24 @@
                 <p><?=$entreprises[0]['site']?>
 
                 <h2>Modifier le compte</h2>
-                <form method="post" action="modifierCompteEntreprise.php">
-                    <label for="email">Modifier votre email</label>
-                    <input type="text" name="email" id="email" value= '<?=$entreprises[0]['email']?>' required>
-                    <label for="adresse">Modifier votre adresse</label>
-                    <input type="text" name="adresse" id="adresse" value= '<?=$entreprises[0]['adresse']?>' required>
-                    <label for="ville">Modifier votre ville</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-                    <input type="text" name="ville" id="ville" value= '<?=$entreprises[0]['ville']?>' required>
-                    <label for="codePostal">Modifier votre code postal</label>
-                    <input type="text" name="codePostal" id="codePostal" value= '<?=$entreprises[0]['codePostal']?>' required>
-                    <label for="site">Modifier votre lien de site</label>
-                    <input type="text" name="site" id="site" value= '<?=$entreprises[0]['site']?>' required>
-                    <input type="submit" name="modifier" value="modifier">
-                </form>
+                <div class="div-formulaire">
+                    <form method="post" action="modifierCompteEntreprise.php">
+                        <label for="email">Modifier votre email</label>
+                        <input type="text" name="email" id="email" value= '<?=$entreprises[0]['email']?>' required>
+                        <label for="adresse">Modifier votre adresse</label>
+                        <input type="text" name="adresse" id="adresse" value= '<?=$entreprises[0]['adresse']?>' required>
+                        <label for="ville">Modifier votre ville</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                        <input type="text" name="ville" id="ville" value= '<?=$entreprises[0]['ville']?>' required>
+                        <label for="codePostal">Modifier votre code postal</label>
+                        <input type="text" name="codePostal" id="codePostal" value= '<?=$entreprises[0]['codePostal']?>' required>
+                        <label for="site">Modifier votre lien de site</label>
+                        <input type="text" name="site" id="site" value= '<?=$entreprises[0]['site']?>' required>
+                        <input type="submit" name="modifier" value="modifier">
+                    </form>
+                </div>
 
             <h2>Offre de stage</h2>
+            
         <?php endif ?>
         <?php if($_SESSION["status"] ==="professeur"):?>
             <?php 
