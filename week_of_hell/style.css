@@ -165,5 +165,8 @@ table {
 .search-form button:hover {
     background-color: #45a049;
 }
-
-.OffredeStage {}
+.grilleOffre{   
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+}

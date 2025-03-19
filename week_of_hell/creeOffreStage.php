@@ -14,12 +14,12 @@ if (isset($_POST['cree'])) {
             return;
         }
 
-        $stmt = $conn->prepare("INSERT INTO demandestage (`dateDeb`, `dateFin`, `description`, `etat`, `enterpris_Id`) VALUES (:dateDeb, :dateFin, :description, :etat, :enterpris_Id)");
+        $stmt = $conn->prepare("INSERT INTO offrestage (`dateDeb`, `dateFin`, `description`, `etat`, `entreprise_Id`) VALUES (:dateDeb, :dateFin, :description, :etat, :enterprise_Id)");
         $stmt->bindParam(':dateDeb', $_POST['dateDeb']);
         $stmt->bindParam(':dateFin', $_POST['dateFin']);
         $stmt->bindParam(':description', $_POST['description']);
         $stmt->bindParam(':etat', $_POST['etat']);
-        $stmt->bindParam(':enterpris_Id', $_SESSION['id']);
+        $stmt->bindParam(':enterprise_Id', $_SESSION['id']);
 
         if ($stmt->execute()) {
             header("Location: index.php");
@@ -37,14 +37,14 @@ if (isset($_POST['cree'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faire une demande de stage</title>
+    <title>Faire une offre de stage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="container">
     <div>
-        <h1>Faire une demande de stage</h1>
-        <form action="creeDemandeStage.php" method="post">
+        <h1>Faire une offre de stage</h1>
+        <form action="creeOffreStage.php" method="post">
             <label for="dateDeb">Date de début</label>
             <input type="date" name="dateDeb" id="dateDeb" required>
 
