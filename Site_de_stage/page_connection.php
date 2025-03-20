@@ -77,8 +77,8 @@ if (isset($_POST['Connexion'])) {
             <input type="submit" name="Connexion">
 
         </form>
-        <div class="creerCompte">
-            <a href="status.php">Crée un comtpe</a>
+        <div>
+            <a href="status.php"> <input type="button" value="creer un compte"></a>
         </div>
     </div>
     <?php

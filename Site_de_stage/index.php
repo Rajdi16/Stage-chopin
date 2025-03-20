@@ -116,7 +116,6 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     <?php endif ?>
                 <?php endif ?>
-
             </div>
             <div class="demandeDeStage">
                 <?php if (isset($_SESSION["status"])): ?>
