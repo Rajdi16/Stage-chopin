@@ -114,6 +114,35 @@
     margin: 0 auto 20px;
 }
 
+/* compte Content */
+.contentcompte {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.contentcompte h1 {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contentcompte p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+
 /* Buttons */
 .buttons {
     margin-top: 20px;
@@ -172,6 +201,15 @@ button:hover span {
 .demandeDeStage h2 {
     font-size: 28px;
     margin-bottom: 15px;
+}
+
+.compteaffiche {
+    text-align: center;
+    color: #ffffff;
+    background-color: #3b3b3b;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 800px;
 }
 
 .grilleOffre {
@@ -283,4 +321,10 @@ input[type="submit"]:hover {
 /* Effet focus sur le bouton */
 input[type="submit"]:focus {
     outline: none;
+}
+
+.compte{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
