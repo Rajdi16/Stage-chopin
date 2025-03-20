@@ -104,14 +104,14 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="contentcompte">
-                <div class="compteaffiche">
-                <h2>Comtpe :</h2>
-                <p><?= $entreprises[0]['nom'] ?>
-                <p><?= $entreprises[0]['email'] ?>
-                <p><?= $entreprises[0]['adresse'] ?>
-                <p><?= $entreprises[0]['ville'] ?>, <?= $entreprises[0]['codePostal'] ?>
-                <p><?= $entreprises[0]['site'] ?>
-                </div>
+                    <div class="compteaffiche">
+                        <h2>Comtpe :</h2>
+                        <p><?= $entreprises[0]['nom'] ?>
+                        <p><?= $entreprises[0]['email'] ?>
+                        <p><?= $entreprises[0]['adresse'] ?>
+                        <p><?= $entreprises[0]['ville'] ?>, <?= $entreprises[0]['codePostal'] ?>
+                        <p><?= $entreprises[0]['site'] ?>
+                    </div>
                 <div class="div-formulaire">
                 <h2>Modifier le compte</h2>
                     <form method="post" action="modifierCompteEntreprise.php">
@@ -139,15 +139,19 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $professeurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="contentcompte">
-                <h2>Comtpe :</h2>
-                <p><?= $professeurs[0]['nom'] ?>, <?= $professeurs[0]['prenom'] ?>
-                <p><?= $professeurs[0]['email'] ?>
+                    <div class="compteaffiche">
+                        <h2>Comtpe :</h2>
+                        <p><?= $professeurs[0]['nom'] ?>, <?= $professeurs[0]['prenom'] ?>
+                        <p><?= $professeurs[0]['email'] ?>
+                    </div>
+                <div class="div-formulaire">
                 <h2>Modifier le compte</h2>
                 <form method="post" action="modifierCompteProf.php">
                     <label for="email">Modifier votre email</label>
                     <input type="text" name="email" id="email" value='<?= $professeurs[0]['email'] ?>' required>
                     <input type="submit" name="modifier" value="modifier">
                 </form>
+                </div>
             </div>
             <?php endif ?>
         </div>
