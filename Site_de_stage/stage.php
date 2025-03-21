@@ -1,18 +1,14 @@
 <?php
 include('./config.php');
 session_start();
-
-$stmt = $conn->prepare("SELECT * FROM offrestage");
-
-$stmt->execute();
-
-$offres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$stmt = $conn->prepare("SELECT * FROM demandestage");
-
-$stmt->execute();
-
-$demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if(isset($_POST['cree'])){
+    $stmt = $conn->prepare("INSERT INTO `stage`(`etudiant_Id`, `entreprise_Id`, `prof_Id`) VALUES (:etudiant_Id, :entreprise_Id, :prof_Id)");
+    $stmt->bindParam(':etudiant_Id', $_POST['etudiantid']);
+    $stmt->bindParam(':entreprise_Id', $_POST['entrepriseid']);
+    $stmt->bindParam(':prof_Id', $_SESSION['id']);
+    $stmt->execute();
+    header("location: index.php");
+}
 
 ?>
 <html lang="en">
@@ -79,67 +75,40 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </li>
                 </ul>
             </div>
-        <div class="offreDeStage">
+        <div class="compte">
             <?php if (isset($_SESSION["status"])): ?>
                 <?php if ($_SESSION["status"] === "etudiant" || $_SESSION["status"] === "professeur"): ?>
-                    <h2>Offre de stage</h2>
-                    <div class="grilleOffre">
-                        <?php foreach ($offres as $offre): ?>
                             <?php
-                            $stmt = $conn->prepare("SELECT * FROM compteentreprise WHERE entreprise_Id = :entreprise_Id");
-                            $stmt->bindParam(':entreprise_Id', $offre['entreprise_Id']);
+                            $stmt = $conn->prepare("SELECT * FROM compteentreprise ");
                             $stmt->execute();
                             $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $stmt1 = $conn->prepare("SELECT * FROM compteetudiant ");
+                            $stmt1->execute();
+                            $etudiants = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                             ?>
-                            <div class="grille">
-                                <?= $entreprises[0]['nom'] ?>
-                                <p>Date de début</p>
-                                <?= $offre['dateDeb'] ?>
-                                <p>Date de fin</p>
-                                <?= $offre['dateFin'] ?>
-                                <p>Description</p>
-                                <?= $offre['description'] ?>
-                                <div>
-                                    <input type="submit" value="Choisir">
+                            <div class="contentcompte">
+                            <div class="compteaffiche">
+                                <h2>Crée stage :</h2>
+                                <div class="div-formulaire">
+                                <form method="post" enctype="multipart/form-data">
+                                    <label for="entreprise">Entreprise :</label>
+                                    <select name="entrepriseid" id="entreprise">
+                                        <?php foreach ($entreprises as $entreprise): ?>
+                                            <option value="<?=$entreprise['entreprise_Id']?>"><?=$entreprise['nom']?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <label for="etudiant">Etudiant :</label>
+                                    <select name="etudiantid" id="etudiant">
+                                        <?php foreach ($etudiants as $etudiant): ?>
+                                            <option value="<?=$etudiant['etudiant_Id']?>"><?=$etudiant['nom']?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    <input type="submit" name="cree" value="Créer">
                                 </div>
                             </div>
-                        <?php endforeach ?>
-                    </div>
                 <?php endif ?>
             <?php endif ?>
 
-        </div>
-        <div class="DemandedeStage">
-            <?php if (isset($_SESSION["status"])): ?>
-                <?php if ($_SESSION["status"] === "entreprise" || $_SESSION["status"] === "professeur"): ?>
-                    <h2>Demande de stage</h2>
-                    <div class="barreDeRecherche">
-                        <form action="stage.php" method="post">
-                            <input type="text" name="recherche" placeholder="Recherche etudiant">
-                            <input type="submit" value="Rechercher">
-                        </form>
-                    </div>
-                    <div class="grilleOffre">
-                        <?php foreach ($demandes as $demande): ?>
-                            <?php
-                            $stmt = $conn->prepare("SELECT * FROM compteetudiant WHERE etudiant_Id = :etudiant_Id");
-                            $stmt->bindParam(':etudiant_Id', $demande['etudiant_Id']);
-                            $stmt->execute();
-                            $etudiant = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            ?>
-                            <div class="grille">
-                                <?= $etudiant[0]['nom'] ?>
-                                <p>Date de début</p>
-                                <?= $demande['dateDeb'] ?>
-                                <p>Date de fin</p>
-                                <?= $demande['dateFin'] ?>
-                                <p>Description</p>
-                                <?= $demande['description'] ?>
-                            </div>
-                        <?php endforeach ?>
-                    </div>
-                <?php endif ?>
-            <?php endif ?>
         </div>
 </body>
 <footer>

@@ -164,6 +164,7 @@ button {
     transition: background 0.3s, color 0.3s;
 }
 
+
 button:hover {
     background: #009688;
     color: white;
@@ -208,9 +209,11 @@ button:hover span {
     color: #ffffff;
     background-color: #3b3b3b;
     padding: 30px;
+    margin: 40px auto;
     border-radius: 8px;
     max-width: 800px;
 }
+
 
 .grilleOffre {
     display: grid;
@@ -219,7 +222,7 @@ button:hover span {
     padding: 10px;
 }
 
-/* Individual Grid Item */
+
 .grille {
     background: #1f1f1f;
     padding: 20px;
