@@ -144,7 +144,7 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 <footer>
     <div class="footer">
-        <p>Copyright © 2023</p>
+        <p>Copyright © 2025</p>
     </div>
 </footer>
 

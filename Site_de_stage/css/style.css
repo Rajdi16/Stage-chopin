@@ -326,8 +326,64 @@ input[type="submit"]:focus {
     outline: none;
 }
 
-.compte{
+.compte {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.titer {
+    text-align: center;
+    color: #ffffff;
+    background-color: #3b3b3b;
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 8px;
+    max-width: 800px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+    outline: none;
+}
+
+select:focus {
+    border-color: #00c6a9;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 8px;
+    max-width: 800px;
+}
+
+input[type="button"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 6px;
+    background: #00c6a9;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    color: #009688;
 }

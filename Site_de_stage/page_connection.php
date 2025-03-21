@@ -63,7 +63,7 @@ if (isset($_POST['Connexion'])) {
 
 <body class="container">
     <div>
-        <h1>Connexion</h1>
+        <h1 class="titre">Connexion</h1>
         <form method="post">
             <input type="text" name="email" placeholder="Email" required>
             <input type="password" name="motdepasse" placeholder="Mot de passe" required>
