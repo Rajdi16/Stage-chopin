@@ -83,10 +83,6 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1>STAGE POUR TOUS</h1>
             <p>Le site qui vous permet de trouver un stage ou un stagiaire</p>
             <p>Vous êtes une entreprise ou un/e étudiant/e, vous êtes au bon endroit</p>
-            <div>
-                <button type="button"><span></span>WATCH MORE</button>
-                <button type="button"><span></span>SUBSCRIBE</button>
-            </div>
         </div>
     </div>
     <div>
