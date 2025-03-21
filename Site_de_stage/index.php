@@ -85,7 +85,7 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Vous êtes une entreprise ou un/e étudiant/e, vous êtes au bon endroit</p>
         </div>
     </div>
-    <div>
+    <div class="container2">
         <div>
             <div class="offreDeStage">
                 <?php if (isset($_SESSION["status"])): ?>

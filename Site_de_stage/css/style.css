@@ -387,3 +387,10 @@ input[type="button"] {
 a:hover {
     color: #009688;
 }
+
+.container2 {
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #2d2d2d, #a3a3a3);
+    padding: 20px;
+}
